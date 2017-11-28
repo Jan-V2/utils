@@ -1,28 +1,7 @@
-import datetime
-
+import inspect
 import os
 
-ROOTDIR = os.path.dirname(os.path.realpath(__file__))
-dir_sep = ''
 
-def detect_platform():
-    from sys import platform as _platform
-
-    if _platform == "linux" or _platform == "linux2":
-        # linux
-        dir_sep = '/'
-    # elif _platform == "darwin":
-    #     # MAC OS X
-    #     pass
-    elif _platform == "win32":
-        # Windows
-        dir_sep = "\\"
-    elif _platform == "win64":
-        # Windows 64-bit
-        dir_sep = "\\"
-    else:
-        # exept
-        pass
 
 def listmerger(lists):
     # takes an array of lists and merges them into 1 multidimentional list csv style
@@ -54,22 +33,8 @@ def get_subdir_list(dir):
         return dirs
 
 
-def log(logline):
-    timestamp = get_timestamp()
-    logline = timestamp + " " + logline
-    print(logline)
-    with open(ROOTDIR + dirsep + "log.txt",mode='a') as logfile:
-        logfile.write(logline + '\n')
-
-
-def log_return():# puts an empty line in the logfile
-    print()
-    with open(ROOTDIR + dirsep + "log.txt",mode='a') as logfile:
-        logfile.write('\n')
-
-
-def get_timestamp():
-    return '[{:%Y-%m-%d_%H-%M-%S}]'.format(datetime.datetime.now())
+def get_methods_form_claas(class_arg):
+    return inspect.getmembers(class_arg, predicate=inspect.ismethod)
 
 
 def escape_string(string):
@@ -83,3 +48,9 @@ def escape_string(string):
                                               ",":  r"\,",
                                               "\n": r"\\n"}))
     return escaped
+
+
+
+
+if __name__ == '__main__':
+    pass
