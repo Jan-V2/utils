@@ -1,5 +1,5 @@
 import os
-
+from pathlib import Path
 
 
 def init_platform_vars():
@@ -21,6 +21,7 @@ def init_platform_vars():
         raise OSError("OS not detected")
 
 
-ROOTDIR = os.path.dirname(os.path.realpath(__file__))
+ROOTDIR = Path(os.path.dirname(os.path.realpath(__file__))).parent# gets the parent of the current dir
 dir_sep = ''
 init_platform_vars()
+
