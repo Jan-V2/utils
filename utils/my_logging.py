@@ -1,6 +1,6 @@
 import datetime
 
-from platfowm_vars import ROOTDIR, dir_sep
+from utils.platfowm_vars import ROOTDIR, dir_sep
 
 
 # todo make this use json and make a gui tool for filtering and viewing logfiles

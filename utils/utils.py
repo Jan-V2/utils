@@ -1,7 +1,11 @@
 import inspect
 import os
 
-
+def raise_custom_except(except_, message):
+    try:
+        raise except_
+    except except_ as e:
+        raise except_(str(message)).with_traceback(e.__traceback__)
 
 def listmerger(lists):
     # takes an array of lists and merges them into 1 multidimentional list csv style
@@ -25,6 +29,14 @@ def listmerger(lists):
                 temp.append(lis[i])
             ret.append(temp)
         return ret
+		
+		
+def list_demerger(list_of_lists, index):
+    # takes a list of lists and returns a list containing all the items in that index
+    ret = []
+    for line in list_of_lists:
+        ret.append(line[index])
+    return ret
 
 def get_subdir_list(dir):
     # gets the names for all the subdirs one layer deep
@@ -35,6 +47,10 @@ def get_subdir_list(dir):
 
 def get_methods_form_claas(class_arg):
     return inspect.getmembers(class_arg, predicate=inspect.ismethod)
+		
+def get_functions_from_class(class_arg):
+    return inspect.getmembers(class_arg, predicate=inspect.isfunction)
+
 
 
 def escape_string(string):
