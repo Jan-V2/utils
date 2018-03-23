@@ -29,8 +29,8 @@ def listmerger(lists):
                 temp.append(lis[i])
             ret.append(temp)
         return ret
-		
-		
+
+
 def list_demerger(list_of_lists, index):
     # takes a list of lists and returns a list containing all the items in that index
     ret = []
@@ -45,12 +45,21 @@ def get_subdir_list(dir):
         return dirs
 
 
-def get_methods_form_claas(class_arg):
+def get_methods_from_class(class_arg):
     return inspect.getmembers(class_arg, predicate=inspect.ismethod)
 		
 def get_functions_from_class(class_arg):
     return inspect.getmembers(class_arg, predicate=inspect.isfunction)
 
+def timestamp_to_datatime(timestamp_str):
+    timestamp_str = timestamp_str.replace("]", '')
+    timestamp_str = timestamp_str.replace("[", '')
+    stamp_ints = []
+    for i in timestamp_str.split('-'):
+        for j in i.split('_'):
+            stamp_ints.append(int(j))
+    return datetime.datetime(year=stamp_ints[0], month=stamp_ints[1],day=stamp_ints[2],
+                             hour=stamp_ints[3], minute=stamp_ints[4], second=stamp_ints[5])
 
 
 def escape_string(string):
